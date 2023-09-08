@@ -140,6 +140,16 @@ ClassA.style.display = "block";
 VideoAElement.muted = true;
 VideoAElement.play();
 
+let playtimer = null;
+
+const startTimer = () => {
+  playtimer = setInterval(() => {
+    play_position.textContent = convertTime(VideoAElement.currentTime);
+    progress_bar.value = Math.floor((VideoAElement.currentTime / VideoAElement.duration) * VideoAElement.duration);
+  }, 100);
+  console.log('startTimerを読み取りました');
+};
+
 let isVideoABox = true;
 
 if (isVideoABox) {
@@ -148,16 +158,6 @@ if (isVideoABox) {
 
     const formattedDuration = convertTime(maxDuration);
     end_position.textContent = `${formattedDuration}`;
-
-    let playtimer = null;
-
-    const startTimer = () => {
-      playtimer = setInterval(() => {
-        play_position.textContent = convertTime(VideoAElement.currentTime);
-        progress_bar.value = Math.floor((VideoAElement.currentTime / VideoAElement.duration) * VideoAElement.duration);
-      }, 100);
-      console.log('startTimerを読み取りました');
-    };
 
     btn_pause.addEventListener('click', () => {
       VideoAElement.pause();
@@ -199,16 +199,7 @@ if (isVideoABox) {
       clearInterval(playtimer);
       console.log('stopTimer一時停止');
     };
-
-    progress_bar.addEventListener('change', () => {
-      startTimer();
-      console.log('Aプログレスバーの操作が完了しました');
-    });
-
-    const calculateSeekTime = (progressValue) => {
-      return (progressValue / 100) * VideoAElement.duration;
-    };
-
+    
     progress_bar.addEventListener('input', () => {
       stopTimer();
       const seekTime = calculateSeekTime(progress_bar.value);
@@ -217,18 +208,23 @@ if (isVideoABox) {
         console.log('Aプログレスバーを操作しました');
       }
     });
+    
+    progress_bar.addEventListener('change', () => {
+      startTimer();
+      console.log('Aプログレスバーの操作が完了しました');
+    });
 
-
-
+    const calculateSeekTime = (progressValue) => {
+      return (progressValue / 100) * VideoAElement.duration;
+    };
+    
+    const isVideoVisible = true;
 
     VideoAElement.addEventListener('timeupdate', () => {
       const currentTimeA = VideoAElement.currentTime;
 
       play_position.textContent = convertTime(currentTimeA);
       end_position.textContent = convertTime(VideoAElement.duration);
-
-
-      const isVideoVisible = true;
 
       if (currentTimeA >= 88) {
         buttonB.style.display = 'block';
@@ -249,14 +245,6 @@ if (isVideoABox) {
         });
       } else {
         buttonB.style.display = 'none';
-      }
-
-      if (ClassA.style.zIndex === "29") {
-        if (isVideoABox) {
-          isVideoABox = false;
-
-          console.log("VideoABox非表示");
-        }
       }
 
       if (currentTimeA >= 93) {
@@ -280,14 +268,6 @@ if (isVideoABox) {
         buttonC.style.display = 'none';
       }
 
-      if (ClassA.style.zIndex === "29") {
-        if (isVideoABox) {
-          isVideoABox = false;
-
-          console.log("VideoABox非表示");
-        }
-      }
-
       if (currentTimeA >= 99) {
         buttonD.style.display = 'block';
         buttonD.addEventListener("click", () => {
@@ -307,14 +287,6 @@ if (isVideoABox) {
         });
       } else {
         buttonD.style.display = 'none';
-
-        if (ClassA.style.zIndex === "29") {
-          if (isVideoABox) {
-            isVideoABox = false;
-
-            console.log("VideoABox非表示");
-          }
-        }
 
 
       } if (currentTimeA >= 103) {
@@ -339,21 +311,11 @@ if (isVideoABox) {
         buttonE.style.display = 'none';
       }
 
-      if (ClassA.style.zIndex === "29") {
-        if (isVideoABox) {
-          isVideoABox = false;
-
-          console.log("VideoABox非表示");
-        }
-      }
-
       if (currentTimeA >= 132) {
         VideoAElement.pause();
       }
-
       console.log('TimeUpDateA');
     });
-
     console.log('loadeddataA');
   });
 }
@@ -1175,7 +1137,7 @@ if (isVideoBoxE) {
   });
 }
 
-// Insurance E
+// Insurance F
 
 let ProgressBarF = ProgressBar.cloneNode(true);
 ProgressBarF.id = "progress_bar_e";
@@ -1306,7 +1268,6 @@ if (isVideoBoxF) {
 
       PlayTimeF.textContent = convertTime(VideoFElement.currentTime);
       EndTimeF.textContent = convertTime(VideoFElement.duration);
-
 
       if (currentTimeF >= 338) {
         buttonF_Info.style.display = 'block';
