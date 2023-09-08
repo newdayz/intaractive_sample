@@ -124,10 +124,6 @@ const opening_P_A = document.getElementById('button_p_a');
 const back_P_I = document.getElementById('button_p_i');
 
 
-VideoAElement.muted = true;
-VideoAElement.play();
-
-
 const convertTime = (time_position) => {
   time_position = Math.floor(time_position);
   let res = null;
@@ -140,6 +136,9 @@ const convertTime = (time_position) => {
   return res;
 };
 
+ClassA.style.display = "block";
+VideoAElement.muted = true;
+VideoAElement.play();
 
 let isVideoABox = true;
 
