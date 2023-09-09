@@ -51,8 +51,8 @@ const Container = document.querySelector(".container");
 const ProgressBar = document.getElementById("progress_bar");
 
 const ProgressP_A = document.getElementById("progress_p_a");
-const play_position = document.getElementById('play_position');
-const progress_bar = document.getElementById('progress');
+const PlayTimeA = document.getElementById('play_position');
+const ProgressA = document.getElementById('progress');
 const end_position = document.getElementById('end_position');
 
 const btn_mute = document.getElementById('mute');
@@ -144,10 +144,17 @@ let playtimer = null;
 
 const startTimer = () => {
   playtimer = setInterval(() => {
-    play_position.textContent = convertTime(VideoAElement.currentTime);
-    progress_bar.value = Math.floor((VideoAElement.currentTime / VideoAElement.duration) * VideoAElement.duration);
+    const currentTimeA = VideoAElement.currentTime;
+    const durationA = VideoAElement.duration;
+
+    if (!isNaN(currentTimeA) && !isNaN(durationA)) {
+      const progressBarAValue = (currentTimeA / durationA) * 100;
+      PlayTimeA.textContent = convertTime(currentTimeA);
+      ProgressA.value = progressBarAValue;
+    }
+
   }, 100);
-  console.log('startTimerを読み取りました');
+  console.log('startTimer');
 };
 
 let isVideoABox = true;
@@ -199,17 +206,17 @@ if (isVideoABox) {
       clearInterval(playtimer);
       console.log('stopTimer一時停止');
     };
-    
-    progress_bar.addEventListener('input', () => {
+
+    ProgressA.addEventListener('input', () => {
       stopTimer();
-      const seekTime = calculateSeekTime(progress_bar.value);
+      const seekTime = calculateSeekTime(ProgressA.value);
       if (!isNaN(seekTime) && isFinite(seekTime) && seekTime >= 0 && seekTime <= VideoAElement.duration) {
         VideoAElement.currentTime = seekTime;
         console.log('Aプログレスバーを操作しました');
       }
     });
-    
-    progress_bar.addEventListener('change', () => {
+
+    ProgressA.addEventListener('change', () => {
       startTimer();
       console.log('Aプログレスバーの操作が完了しました');
     });
@@ -217,13 +224,13 @@ if (isVideoABox) {
     const calculateSeekTime = (progressValue) => {
       return (progressValue / 100) * VideoAElement.duration;
     };
-    
+
     const isVideoVisible = true;
 
     VideoAElement.addEventListener('timeupdate', () => {
       const currentTimeA = VideoAElement.currentTime;
 
-      play_position.textContent = convertTime(currentTimeA);
+      PlayTimeA.textContent = convertTime(currentTimeA);
       end_position.textContent = convertTime(VideoAElement.duration);
 
       if (currentTimeA >= 88) {
@@ -363,10 +370,17 @@ let playtimerB = null;
 
 const startTimerB = () => {
   playtimerB = setInterval(() => {
-    PlayTimeB.textContent = convertTime(VideoBElement.currentTime);
-    ProgressB.value = Math.floor((VideoBElement.currentTime / VideoBElement.duration) * VideoBElement.duration);
+    const currentTimeB = VideoBElement.currentTime;
+    const durationB = VideoBElement.duration;
+
+    if (!isNaN(currentTimeB) && !isNaN(durationB)) {
+      const progressBarBValue = (currentTimeB / durationB) * 100;
+      PlayTimeB.textContent = convertTime(currentTimeB);
+      ProgressB.value = progressBarBValue;
+    }
+    
   }, 100);
-  console.log('startTimerBが呼び出されました');
+  console.log('startTimerB');
 };
 
 let isVideoBBox = true;
