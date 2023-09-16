@@ -4,189 +4,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="保険の見直し - インタラクティブ動画 -">
   <title>保険の見直しのインタラクティブ動画</title>
   <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-  <div class="main-insurance">
+  <div class="container">
 
-    <div class="container">
+    <main>
+      <div class="interactive_videos">
+        <!-- video要素 -->
+        <div class="videos_box" id="videos">
+          <video id="insurance_a" class="vi_A" src="video/opening-01.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-      <main>
+          <video id="insurance_b" class="vi_B" src="video/iryou-minaoshi-02.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-        <div class="main-hero">
+          <video class="vi_C" id="insurance_c" src="video/shibou-minaoshi-02.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-          <div class="insurance-box" id="videos">
+          <video class="vi_D" id="insurance_d" src="video/gan-minaoshi-02.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video id="insurance_a" class="vi_A" src="video/opening-01.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_E" id="insurance_e" src="video/jibyou-minaoshi-02.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video id="insurance_b" class="vi_B" src="video/iryou-minaoshi-02.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_F" id="insurance_f" src="video/iryou-kakesute-0301.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_C" id="insurance_c" src="video/shibou-minaoshi-02.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_G" id="insurance_g" src="video/iryou-cyotiku-0302.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_D" id="insurance_d" src="video/gan-minaoshi-02.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_H" id="insurance_h" src="video/shibou-kakesute-0301.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_E" id="insurance_e" src="video/jibyou-minaoshi-02.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_I" id="insurance_i" src="video/shibou-cyotiku-0302.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_F" id="insurance_f" src="video/iryou-kakesute-0301.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_J" id="insurance_j" src="video/gan-kakesute-0301.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_G" id="insurance_g" src="video/iryou-cyotiku-0302.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_K" id="insurance_k" src="video/gan-cyotiku-0302.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_H" id="insurance_h" src="video/shibou-kakesute-0301.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_L" id="insurance_l" src="video/gan-dorudate-0303.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_I" id="insurance_i" src="video/shibou-cyotiku-0302.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_M" id="insurance_m" src="video/shibou-kakesute-0401.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_J" id="insurance_j" src="video/gan-kakesute-0301.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_N" id="insurance_n" src="video/shibou-kakesute-0402.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_K" id="insurance_k" src="video/gan-cyotiku-0302.mp4" type="video/mp4" preload="none"
-              playsinline></video>
+          <video class="vi_O" id="insurance_o" src="video/shibou-cyotiku-0401.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
-            <video class="vi_L" id="insurance_l" src="video/gan-dorudate-0303.mp4" type="video/mp4" preload="none"
-              playsinline></video>
-
-            <video class="vi_M" id="insurance_m" src="video/shibou-kakesute-0401.mp4" type="video/mp4" preload="none"
-              playsinline></video>
-
-            <video class="vi_N" id="insurance_n" src="video/shibou-kakesute-0402.mp4" type="video/mp4" preload="none"
-              playsinline></video>
-
-            <video class="vi_O" id="insurance_o" src="video/shibou-cyotiku-0401.mp4" type="video/mp4" preload="none"
-              playsinline></video>
-
-            <video class="vi_P" id="insurance_p" src="video/shibou-cyotiku-0402.mp4" type="video/mp4" preload="none"
-              playsinline></video>
-
-            <div class="button-container">
-
-              <div class="button-box">
-
-                <button class="allbutton insurance_a_1" id="button_b">click"B"</button>
-                <button class="allbutton insurance_a_2" id="button_c">click"C"</button>
-                <button class="allbutton insurance_a_3" id="button_d">click"D"</button>
-                <button class="allbutton insurance_a_4" id="button_e">click"E"</button>
-
-                <button class="allbutton insurance_b_1" id="button_f">click"F"</button>
-                <button class="allbutton insurance_b_2" id="button_g">click"G"</button>
-                <button class="allbutton insurance_b_3" id="back_b_a">click"opening"</button>
-
-                <button class="allbutton insurance_c_1" id="button_h">click"H"</button>
-                <button class="allbutton insurance_c_2" id="button_i">click"I"</button>
-                <button class="allbutton insurance_c_3" id="button_c_a">click"opening"</button>
-
-                <button class="allbutton insurance_d_1" id="button_j">click"J"</button>
-                <button class="allbutton insurance_d_2" id="button_k">click"K"</button>
-                <button class="allbutton insurance_d_3" id="button_l">click"L"</button>
-                <button class="allbutton insurance_d_4" id="button_d_a">click"opening"</button>
-
-                <button class="allbutton insurance_e_1" id="button_e_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_e_2" id="button_e_a">click"opening"</button>
-
-                <button class="allbutton insurance_f_1" id="button_f_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_f_2" id="button_f_a">click"opening"</button>
-                <button class="allbutton insurance_f_3" id="button_f_b">click"backB"</button>
-
-                <button class="allbutton insurance_g_1" id="button_g_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_g_2" id="button_g_a">click"opening"</button>
-                <button class="allbutton insurance_g_3" id="button_g_b">click"backB"</button>
-
-                <button class="allbutton insurance_h_1" id="button_h_m">click"M"</button>
-                <button class="allbutton insurance_h_2" id="button_h_n">click"N"</button>
-                <button class="allbutton insurance_h_3" id="button_h_c">click"backC"</button>
-
-                <button class="allbutton insurance_i_1" id="button_i_o">click"O"</button>
-                <button class="allbutton insurance_i_2" id="button_i_p">click"P"</button>
-                <button class="allbutton insurance_i_3" id="button_i_c">click"backC"</button>
-
-                <button class="allbutton insurance_j_1" id="button_j_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_j_2" id="button_j_a">click"opening"</button>
-                <button class="allbutton insurance_j_3" id="button_j_d">click"backD"</button>
-
-                <button class="allbutton insurance_k_1" id="button_k_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_k_2" id="button_k_a">click"opening"</button>
-                <button class="allbutton insurance_k_3" id="button_k_d">click"backD"</button>
-
-                <button class="allbutton insurance_l_1" id="button_l_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_l_2" id="button_l_a">click"opening"</button>
-                <button class="allbutton insurance_l_3" id="button_l_d">click"backD"</button>
-
-                <button class="allbutton insurance_m_1" id="button_m_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_m_2" id="button_m_a">click"opening"</button>
-                <button class="allbutton insurance_m_3" id="button_m_h">click"backH"</button>
-
-                <button class="allbutton insurance_n_1" id="button_n_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_n_2" id="button_n_a">click"opening"</button>
-                <button class="allbutton insurance_n_3" id="button_n_h">click"backH"</button>
-
-                <button class="allbutton insurance_o_1" id="button_o_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_o_2" id="button_o_a">click"opening"</button>
-                <button class="allbutton insurance_o_3" id="button_o_i">click"backI"</button>
-
-                <button class="allbutton insurance_p_1" id="button_p_info"
-                  onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
-                <button class="allbutton insurance_p_2" id="button_p_a">click"opening"</button>
-                <button class="allbutton insurance_p_3" id="button_p_i">click"backI"</button>
-
-              </div>
-
-            </div>
-
-
-
-          </div>
+          <video class="vi_P" id="insurance_p" src="video/shibou-cyotiku-0402.mp4" type="video/mp4" preload="none"
+            playsinline></video>
 
         </div>
 
-      </main>
+        <div class="buttons">
+          <!-- button要素 -->
+          <button class="allbutton insurance_a_1" id="button_b">click"B"</button>
+          <button class="allbutton insurance_a_2" id="button_c">click"C"</button>
+          <button class="allbutton insurance_a_3" id="button_d">click"D"</button>
+          <button class="allbutton insurance_a_4" id="button_e">click"E"</button>
 
-      <div id="progress_bar">
-        <div id="background_bar">
+          <button class="allbutton insurance_b_1" id="button_f">click"F"</button>
+          <button class="allbutton insurance_b_2" id="button_g">click"G"</button>
+          <button class="allbutton insurance_b_3" id="back_b_a">click"opening"</button>
 
-          <div id="controls_button">
-            <img id="pause" src="img/pause-button.png" alt="一時停止ボタン">
-            <img id="play" src="img/play-button.png" alt="再生ボタン">
-          </div>
+          <button class="allbutton insurance_c_1" id="button_h">click"H"</button>
+          <button class="allbutton insurance_c_2" id="button_i">click"I"</button>
+          <button class="allbutton insurance_c_3" id="button_c_a">click"opening"</button>
 
-          <p id="progress_p_a">
-            <time id="play_position">0:00</time>
-            <input type="range" id="progress" max="100" value="0">
-            <time id="end_position">0:00</time>
-          </p>
+          <button class="allbutton insurance_d_1" id="button_j">click"J"</button>
+          <button class="allbutton insurance_d_2" id="button_k">click"K"</button>
+          <button class="allbutton insurance_d_3" id="button_l">click"L"</button>
+          <button class="allbutton insurance_d_4" id="button_d_a">click"opening"</button>
 
-          <div id="controls_sound">
-            <img id="mute" src="img/mute.png" alt="muteボタン">
-            <img id="unmute" src="img/unmute.png" alt="unmuteボタン">
-          </div>
+          <button class="allbutton insurance_e_1" id="button_e_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_e_2" id="button_e_a">click"opening"</button>
+
+          <button class="allbutton insurance_f_1" id="button_f_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_f_2" id="button_f_a">click"opening"</button>
+          <button class="allbutton insurance_f_3" id="button_f_b">click"backB"</button>
+
+          <button class="allbutton insurance_g_1" id="button_g_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_g_2" id="button_g_a">click"opening"</button>
+          <button class="allbutton insurance_g_3" id="button_g_b">click"backB"</button>
+
+          <button class="allbutton insurance_h_1" id="button_h_m">click"M"</button>
+          <button class="allbutton insurance_h_2" id="button_h_n">click"N"</button>
+          <button class="allbutton insurance_h_3" id="button_h_c">click"backC"</button>
+
+          <button class="allbutton insurance_i_1" id="button_i_o">click"O"</button>
+          <button class="allbutton insurance_i_2" id="button_i_p">click"P"</button>
+          <button class="allbutton insurance_i_3" id="button_i_c">click"backC"</button>
+
+          <button class="allbutton insurance_j_1" id="button_j_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_j_2" id="button_j_a">click"opening"</button>
+          <button class="allbutton insurance_j_3" id="button_j_d">click"backD"</button>
+
+          <button class="allbutton insurance_k_1" id="button_k_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_k_2" id="button_k_a">click"opening"</button>
+          <button class="allbutton insurance_k_3" id="button_k_d">click"backD"</button>
+
+          <button class="allbutton insurance_l_1" id="button_l_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_l_2" id="button_l_a">click"opening"</button>
+          <button class="allbutton insurance_l_3" id="button_l_d">click"backD"</button>
+
+          <button class="allbutton insurance_m_1" id="button_m_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_m_2" id="button_m_a">click"opening"</button>
+          <button class="allbutton insurance_m_3" id="button_m_h">click"backH"</button>
+
+          <button class="allbutton insurance_n_1" id="button_n_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_n_2" id="button_n_a">click"opening"</button>
+          <button class="allbutton insurance_n_3" id="button_n_h">click"backH"</button>
+
+          <button class="allbutton insurance_o_1" id="button_o_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_o_2" id="button_o_a">click"opening"</button>
+          <button class="allbutton insurance_o_3" id="button_o_i">click"backI"</button>
+
+          <button class="allbutton insurance_p_1" id="button_p_info"
+            onclick="window.open('https://ws.formzu.net/dist/S712216565/', '_blank')">click"info"</button>
+          <button class="allbutton insurance_p_2" id="button_p_a">click"opening"</button>
+          <button class="allbutton insurance_p_3" id="button_p_i">click"backI"</button>
 
         </div>
+
       </div>
 
+    </main>
+
+    <!-- プログレスバー -->
+    <div id="progress_bar">
+      <div class="progress_container" id="background_bar">
+
+        <div id="controls_button">
+          <img id="pause" src="img/pause-button.png" alt="一時停止ボタン">
+          <img id="play" src="img/play-button.png" alt="再生ボタン">
+        </div>
+
+        <p id="progress_p_a">
+          <time id="play_position">0:00</time>
+          <input type="range" id="progress" max="100" value="0">
+          <time id="end_position">0:00</time>
+        </p>
+
+        <div id="controls_sound">
+          <img id="mute" src="img/mute.png" alt="muteボタン">
+          <img id="unmute" src="img/unmute.png" alt="unmuteボタン">
+        </div>
+
+      </div>
     </div>
 
   </div>
 
   <script src="js/main.js"></script>
+
 
 </body>
 

@@ -157,6 +157,8 @@ const startTimer = () => {
   console.log('startTimer');
 };
 
+startTimer();
+
 let isVideoABox = true;
 
 if (isVideoABox) {
@@ -167,20 +169,23 @@ if (isVideoABox) {
     end_position.textContent = `${formattedDuration}`;
 
     btn_pause.addEventListener('click', () => {
-      VideoAElement.pause();
-      stopTimer();
-      btn_pause.style.display = 'none';
-      btn_play.style.display = 'block';
-      console.log('A一時停止をクリックしました');
+      if (!VideoAElement.paused) {
+        VideoAElement.pause();
+        stopTimer();
+        btn_pause.style.display = 'none';
+        btn_play.style.display = 'block';
+        console.log('A一時停止をクリックしました');
+      }
     });
 
-
     btn_play.addEventListener('click', () => {
-      startTimer();
-      VideoAElement.play();
-      btn_play.style.display = 'none';
-      btn_pause.style.display = 'block';
-      console.log('A再生アイコンをクリックしました');
+      if (VideoAElement.paused) {
+        startTimer();
+        VideoAElement.play();
+        btn_play.style.display = 'none';
+        btn_pause.style.display = 'block';
+        console.log('A再生アイコンをクリックしました');
+      }
     });
 
     btn_mute.addEventListener('click', () => {
@@ -241,6 +246,18 @@ if (isVideoABox) {
             VideoAElement.currentTime = 0;
             VideoAElement.pause();
             ProgressBar.style.zIndex = "-29";
+            ProgressBar.style.display = "none";
+
+
+            if (VideoAElement.muted) {
+              VideoBElement.muted = true;
+              MuteBtnB.style.display = "block";
+              UnmuteBtnB.style.display = "none";
+            } else if (!VideoAElement.muted) {
+              VideoBElement.muted = false;
+              UnmuteBtnB.style.display = "block";
+              MuteBtnB.style.display = "none";
+            }
 
             VideoBElement.play();
             ClassB.style.zIndex = "290";
@@ -262,6 +279,18 @@ if (isVideoABox) {
             VideoAElement.currentTime = 0;
             VideoAElement.pause();
             ProgressBar.style.zIndex = "-29";
+            ProgressBar.style.display = "none";
+
+
+            if (VideoAElement.muted) {
+              VideoCElement.muted = true;
+              MuteBtnC.style.display = "block";
+              UnmuteBtnC.style.display = "none";
+            } else if (!VideoAElement.muted) {
+              VideoCElement.muted = false;
+              UnmuteBtnC.style.display = "block";
+              MuteBtnC.style.display = "none";
+            }
 
             VideoCElement.play();
             ClassC.style.zIndex = "290";
@@ -283,11 +312,23 @@ if (isVideoABox) {
             VideoAElement.currentTime = 0;
             VideoAElement.pause();
             ProgressBar.style.zIndex = "-29";
+            ProgressBar.style.display = "none";
+
 
             VideoDElement.play();
             ClassD.style.zIndex = "290";
             ProgressBarD.style.zIndex = "1";
             ProgressBarD.style.display = "block";
+
+            if (VideoAElement.muted) {
+              VideoDElement.muted = true;
+              MuteBtnD.style.display = "block";
+              UnmuteBtnD.style.display = "none";
+            } else if (!VideoAElement.muted) {
+              VideoDElement.muted = false;
+              UnmuteBtnD.style.display = "block";
+              MuteBtnD.style.display = "none";
+            }
 
             console.log('button3をクリックしました');
           }
@@ -304,12 +345,23 @@ if (isVideoABox) {
             VideoAElement.currentTime = 0;
             VideoAElement.pause();
             ProgressBar.style.zIndex = "-29";
+            ProgressBar.style.display = "none";
 
 
             VideoEElement.play();
             ClassE.style.zIndex = "290";
             ProgressBarE.style.zIndex = "1";
             ProgressBarE.style.display = "block";
+
+            if (VideoAElement.muted) {
+              VideoEElement.muted = true;
+              MuteBtnE.style.display = "block";
+              UnmuteBtnE.style.display = "none";
+            } else if (!VideoAElement.muted) {
+              VideoEElement.muted = false;
+              UnmuteBtnE.style.display = "block";
+              MuteBtnE.style.display = "none";
+            }
 
             console.log('button4をクリックしました');
           }
@@ -320,6 +372,8 @@ if (isVideoABox) {
 
       if (currentTimeA >= 132) {
         VideoAElement.pause();
+        btn_pause.style.display = "none";
+        btn_play.style.display = "block";
       }
       console.log('TimeUpDateA');
     });
@@ -378,7 +432,7 @@ const startTimerB = () => {
       PlayTimeB.textContent = convertTime(currentTimeB);
       ProgressB.value = progressBarBValue;
     }
-    
+
   }, 100);
   console.log('startTimerB');
 };
@@ -392,30 +446,27 @@ if (isVideoBBox) {
     const formattedDurationB = convertTime(maxDurationB);
     EndTimeB.textContent = `${formattedDurationB}`;
 
-    if (ClassA.style.zIndex = "29") {
-      startTimerB();
-    }
+    startTimerB();
 
-    if (PauseBtnB) {
-      PauseBtnB.addEventListener('click', () => {
+    PauseBtnB.addEventListener('click', () => {
+      if (!VideoBElement.paused) {
         VideoBElement.pause();
         stopTimerB();
         PauseBtnB.style.display = 'none';
         PlayBtnB.style.display = 'block';
         console.log('B一時停止をクリックしました');
-      });
-    }
+      }
+    });
 
-    if (PlayBtnB) {
-      PlayBtnB.addEventListener('click', () => {
+    PlayBtnB.addEventListener('click', () => {
+      if (VideoBElement.paused) {
         startTimerB();
         VideoBElement.play();
         PlayBtnB.style.display = 'none';
         PauseBtnB.style.display = 'block';
         console.log('再生Bアイコンをクリックしました');
-      });
-
-    }
+      }
+    });
 
     MuteBtnB.addEventListener('click', () => {
       if (VideoBElement.muted) {
@@ -468,7 +519,6 @@ if (isVideoBBox) {
       PlayTimeB.textContent = convertTime(VideoBElement.currentTime);
       EndTimeB.textContent = convertTime(VideoBElement.duration);
 
-
       if (currentTimeB >= 150) {
         buttonF.style.display = 'block';
         buttonF.addEventListener("click", () => {
@@ -477,12 +527,22 @@ if (isVideoBBox) {
             VideoBElement.currentTime = 0;
             VideoBElement.pause();
             ProgressBarB.style.zIndex = "-28";
-
+            ProgressBarB.style.display = "none";
 
             VideoFElement.play();
             ClassF.style.zIndex = "290";
             ProgressBarF.style.zIndex = "1";
             ProgressBarF.style.display = "block";
+
+            if (VideoBElement.muted) {
+              VideoFElement.muted = true;
+              MuteBtnF.style.display = "block";
+              UnmuteBtnF.style.display = "none";
+            } else if (!VideoBElement.muted) {
+              VideoFElement.muted = false;
+              UnmuteBtnF.style.display = "block";
+              MuteBtnF.style.display = "none";
+            }
 
             console.log('button01Bをクリックしました');
           }
@@ -499,11 +559,23 @@ if (isVideoBBox) {
             VideoBElement.currentTime = 0;
             VideoBElement.pause();
             ProgressBarB.style.zIndex = "-28";
+            ProgressBarB.style.display = "none";
+
 
             VideoGElement.play();
             ClassG.style.zIndex = "290";
             ProgressBarG.style.zIndex = "1";
             ProgressBarG.style.display = "block";
+
+            if (VideoBElement.muted) {
+              VideoGElement.muted = true;
+              MuteBtnG.style.display = "block";
+              UnmuteBtnG.style.display = "none";
+            } else if (!VideoBElement.muted) {
+              VideoGElement.muted = false;
+              UnmuteBtnG.style.display = "block";
+              MuteBtnG.style.display = "none";
+            }
 
             console.log('button02をクリックしました');
           }
@@ -520,11 +592,20 @@ if (isVideoBBox) {
             VideoBElement.currentTime = 0;
             VideoBElement.pause();
             ProgressBarB.style.zIndex = "-28";
+            ProgressBarB.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoBElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoBElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -537,6 +618,8 @@ if (isVideoBBox) {
       }
       if (currentTimeB >= 182) {
         VideoBElement.pause();
+        PauseBtnB.style.display = "none";
+        PlayBtnB.style.display = "block";
       }
 
       console.log('TimeUpDateBが発生しました');
@@ -608,24 +691,26 @@ VideoCElement.addEventListener('loadeddata', () => {
   const formattedDurationC = convertTime(maxDurationC);
   EndTimeC.textContent = `${formattedDurationC}`;
 
-  if (ClassA.style.zIndex = "29") {
-    startTimerC();
-  }
+  startTimerC();
 
   PauseBtnC.addEventListener('click', () => {
-    VideoCElement.pause();
-    stopTimerC();
-    PauseBtnC.style.display = 'none';
-    PlayBtnC.style.display = 'block';
-    console.log('C一時停止をクリックしました');
+    if (!VideoCElement.paused) {
+      VideoCElement.pause();
+      stopTimerC();
+      PauseBtnC.style.display = 'none';
+      PlayBtnC.style.display = 'block';
+      console.log('C一時停止をクリックしました');
+    }
   });
 
   PlayBtnC.addEventListener('click', () => {
-    startTimerC();
-    VideoCElement.play();
-    PlayBtnC.style.display = 'none';
-    PauseBtnC.style.display = 'block';
-    console.log('C再生をクリック');
+    if (VideoCElement.paused) {
+      startTimerC();
+      VideoCElement.play();
+      PlayBtnC.style.display = 'none';
+      PauseBtnC.style.display = 'block';
+      console.log('C再生をクリック');
+    }
   });
 
   MuteBtnC.addEventListener('click', () => {
@@ -688,6 +773,18 @@ VideoCElement.addEventListener('loadeddata', () => {
           VideoCElement.currentTime = 0;
           VideoCElement.pause();
           ProgressBarC.style.zIndex = "-27";
+          ProgressBarC.style.display = "none";
+
+
+          if (VideoCElement.muted) {
+            VideoHElement.muted = true;
+            MuteBtnH.style.display = "block";
+            UnmuteBtnH.style.display = "none";
+          } else if (!VideoCElement.muted) {
+            VideoHElement.muted = false;
+            UnmuteBtnH.style.display = "block";
+            MuteBtnH.style.display = "none";
+          }
 
           VideoHElement.play();
           ClassH.style.zIndex = "290";
@@ -709,6 +806,18 @@ VideoCElement.addEventListener('loadeddata', () => {
           VideoCElement.currentTime = 0;
           VideoCElement.pause();
           ProgressBarC.style.zIndex = "-27";
+          ProgressBarC.style.display = "none";
+
+
+          if (VideoCElement.muted) {
+            VideoIElement.muted = true;
+            MuteBtnI.style.display = "block";
+            UnmuteBtnI.style.display = "none";
+          } else if (!VideoCElement.muted) {
+            VideoIElement.muted = false;
+            UnmuteBtnI.style.display = "block";
+            MuteBtnI.style.display = "none";
+          }
 
           VideoIElement.play();
           ClassI.style.zIndex = "290";
@@ -730,10 +839,19 @@ VideoCElement.addEventListener('loadeddata', () => {
           VideoCElement.currentTime = 0;
           VideoCElement.pause();
           ProgressBarC.style.zIndex = "-27";
+          ProgressBarC.style.display = "none";
 
-          btn_mute.style.display = "none";
-          btn_unmute.style.display = "block";
-          VideoAElement.muted = false;
+
+          if (VideoCElement.muted) {
+            VideoAElement.muted = true;
+            btn_mute.style.display = "block";
+            btn_unmute.style.display = "none";
+          } else if (!VideoCElement.muted) {
+            VideoAElement.muted = false;
+            btn_unmute.style.display = "block";
+            btn_mute.style.display = "none";
+          }
+
           VideoAElement.play();
           ClassA.style.zIndex = "290";
           ProgressBar.style.zIndex = "1";
@@ -747,6 +865,8 @@ VideoCElement.addEventListener('loadeddata', () => {
     }
 
     if (currentTimeC >= 106) {
+      PauseBtnC.style.display = "none";
+      PlayBtnC.style.display = "block";
       VideoCElement.pause();
     }
 
@@ -756,6 +876,7 @@ VideoCElement.addEventListener('loadeddata', () => {
   console.log('loadeddataC');
 });
 
+// Insurance D
 
 let ProgressBarD = ProgressBar.cloneNode(true);
 ProgressBarD.id = "progress_bar_d";
@@ -794,8 +915,6 @@ let UnmuteBtnD = ContorolsSoundD.querySelector("#unmute");
 MuteBtnD.id = "mute_d";
 UnmuteBtnD.id = "unmute_d";
 
-// // Video D Element
-
 let playtimerD = null;
 
 const startTimerD = () => {
@@ -818,20 +937,26 @@ VideoDElement.addEventListener('loadeddata', () => {
   const formattedDurationD = convertTime(maxDurationD);
   EndTimeD.textContent = `${formattedDurationD}`;
 
+  startTimerD();
+
   PauseBtnD.addEventListener('click', () => {
-    VideoDElement.pause();
-    stopTimerD();
-    PauseBtnD.style.display = 'none';
-    PlayBtnD.style.display = 'block';
-    console.log('D一時停止をクリックしました');
+    if (!VideoDElement.paused) {
+      VideoDElement.pause();
+      stopTimerD();
+      PauseBtnD.style.display = 'none';
+      PlayBtnD.style.display = 'block';
+      console.log('D一時停止をクリックしました');
+    }
   });
 
   PlayBtnD.addEventListener('click', () => {
-    startTimerD();
-    VideoDElement.play();
-    PlayBtnD.style.display = 'none';
-    PauseBtnD.style.display = 'block';
-    console.log('D再生をクリックしました');
+    if (VideoDElement.paused) {
+      startTimerD();
+      VideoDElement.play();
+      PlayBtnD.style.display = 'none';
+      PauseBtnD.style.display = 'block';
+      console.log('D再生をクリックしました');
+    }
   });
 
   MuteBtnD.addEventListener('click', () => {
@@ -893,6 +1018,18 @@ VideoDElement.addEventListener('loadeddata', () => {
           VideoDElement.currentTime = 0;
           VideoDElement.pause();
           ProgressBarD.style.zIndex = "-26";
+          ProgressBarD.style.display = "none";
+
+
+          if (VideoDElement.muted) {
+            VideoJElement.muted = true;
+            MuteBtnJ.style.display = "block";
+            UnmuteBtnJ.style.display = "none";
+          } else if (!VideoDElement.muted) {
+            VideoJElement.muted = false;
+            UnmuteBtnJ.style.display = "block";
+            MuteBtnJ.style.display = "none";
+          }
 
           VideoJElement.play();
           ClassJ.style.zIndex = "290";
@@ -914,6 +1051,18 @@ VideoDElement.addEventListener('loadeddata', () => {
           VideoDElement.currentTime = 0;
           VideoDElement.pause();
           ProgressBarD.style.zIndex = "-26";
+          ProgressBarD.style.display = "none";
+
+
+          if (VideoDElement.muted) {
+            VideoKElement.muted = true;
+            MuteBtnK.style.display = "block";
+            UnmuteBtnK.style.display = "none";
+          } else if (!VideoDElement.muted) {
+            VideoKElement.muted = false;
+            UnmuteBtnK.style.display = "block";
+            MuteBtnK.style.display = "none";
+          }
 
           VideoKElement.play();
           ClassK.style.zIndex = "290";
@@ -935,6 +1084,18 @@ VideoDElement.addEventListener('loadeddata', () => {
           VideoDElement.currentTime = 0;
           VideoDElement.pause();
           ProgressBarD.style.zIndex = "-26";
+          ProgressBarD.style.display = "none";
+
+
+          if (VideoDElement.muted) {
+            VideoLElement.muted = true;
+            MuteBtnL.style.display = "block";
+            UnmuteBtnL.style.display = "none";
+          } else if (!VideoDElement.muted) {
+            VideoLElement.muted = false;
+            UnmuteBtnL.style.display = "block";
+            MuteBtnL.style.display = "none";
+          }
 
           VideoLElement.play();
           ClassL.style.zIndex = "290";
@@ -956,10 +1117,19 @@ VideoDElement.addEventListener('loadeddata', () => {
           VideoDElement.currentTime = 0;
           VideoDElement.pause();
           ProgressBarD.style.zIndex = "-26";
+          ProgressBarD.style.display = "none";
 
-          btn_mute.style.display = "none";
-          btn_unmute.style.display = "block";
-          VideoAElement.muted = false;
+
+          if (VideoDElement.muted) {
+            VideoAElement.muted = true;
+            btn_mute.style.display = "block";
+            btn_unmute.style.display = "none";
+          } else if (!VideoDElement.muted) {
+            VideoAElement.muted = false;
+            btn_unmute.style.display = "block";
+            btn_mute.style.display = "none";
+          }
+
           VideoAElement.play();
           ClassA.style.zIndex = "290";
           ProgressBar.style.zIndex = "1";
@@ -973,6 +1143,8 @@ VideoDElement.addEventListener('loadeddata', () => {
     }
 
     if (currentTimeD >= 109) {
+      PauseBtnD.style.display = "none";
+      PlayBtnD.style.display = "block";
       VideoDElement.pause();
     }
 
@@ -1047,24 +1219,24 @@ if (isVideoBoxE) {
     const formattedDurationE = convertTime(maxDurationE);
     EndTimeE.textContent = `${formattedDurationE}`;
 
-    if (ClassA.style.zIndex = "29") {
-      startTimerE();
-    }
-
     PauseBtnE.addEventListener('click', () => {
-      VideoEElement.pause();
-      stopTimerE();
-      PauseBtnE.style.display = 'none';
-      PlayBtnE.style.display = 'block';
-      console.log('E一時停止をクリックしました');
+      if (!VideoEElement.paused) {
+        VideoEElement.pause();
+        stopTimerE();
+        PauseBtnE.style.display = 'none';
+        PlayBtnE.style.display = 'block';
+        console.log('E一時停止をクリックしました');
+      }
     });
 
     PlayBtnE.addEventListener('click', () => {
-      startTimerE();
-      VideoEElement.play();
-      PlayBtnE.style.display = 'none';
-      PauseBtnE.style.display = 'block';
-      console.log('再生Eアイコンをクリックしました');
+      if (VideoEElement.paused) {
+        startTimerE();
+        VideoEElement.play();
+        PlayBtnE.style.display = 'none';
+        PauseBtnE.style.display = 'block';
+        console.log('再生Eアイコンをクリックしました');
+      }
     });
 
 
@@ -1128,6 +1300,7 @@ if (isVideoBoxE) {
             VideoEElement.pause();
             PauseBtnE.style.display = "none";
             PlayBtnE.style.display = "block";
+
             console.log('buttonE_Infoをクリックしました');
           }
         });
@@ -1143,11 +1316,20 @@ if (isVideoBoxE) {
             VideoEElement.currentTime = 0;
             VideoEElement.pause();
             ProgressBarE.style.zIndex = "-25";
+            ProgressBarE.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoEElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoEElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -1160,6 +1342,8 @@ if (isVideoBoxE) {
       }
 
       if (currentTimeE >= 272) {
+        PauseBtnE.style.display = "none";
+        PlayBtnE.style.display = "block";
         VideoEElement.pause();
       }
 
@@ -1173,7 +1357,7 @@ if (isVideoBoxE) {
 // Insurance F
 
 let ProgressBarF = ProgressBar.cloneNode(true);
-ProgressBarF.id = "progress_bar_e";
+ProgressBarF.id = "progress_bar_f";
 Container.appendChild(ProgressBarF);
 ProgressBarF.style.zIndex = "-5";
 ProgressBarF.style.display = "none";
@@ -1241,20 +1425,23 @@ if (isVideoBoxF) {
     }
 
     PauseBtnF.addEventListener('click', () => {
-      VideoFElement.pause();
-      stopTimerF();
-      PauseBtnF.style.display = 'none';
-      PlayBtnF.style.display = 'block';
-      console.log('F一時停止をクリックしました');
+      if (!VideoFElement.paused) {
+        VideoFElement.pause();
+        stopTimerF();
+        PauseBtnF.style.display = 'none';
+        PlayBtnF.style.display = 'block';
+        console.log('F一時停止をクリックしました');
+      }
     });
 
-
     PlayBtnF.addEventListener('click', () => {
-      startTimerF();
-      VideoFElement.play();
-      PlayBtnF.style.display = 'none';
-      PauseBtnF.style.display = 'block';
-      console.log('再生Fアイコンをクリックしました');
+      if (VideoFElement.paused) {
+        startTimerF();
+        VideoFElement.play();
+        PlayBtnF.style.display = 'none';
+        PauseBtnF.style.display = 'block';
+        console.log('再生Fアイコンをクリックしました');
+      }
     });
 
 
@@ -1315,6 +1502,10 @@ if (isVideoBoxF) {
           if (isVideoVisibleF) {
 
             VideoFElement.pause();
+            if (VideoFElement.pause) {
+              PauseBtnF.style.display = "none";
+              PlayBtnF.style.display = "block";
+            }
 
             console.log('buttonF_Infoをクリックしました');
           }
@@ -1331,10 +1522,19 @@ if (isVideoBoxF) {
             VideoFElement.currentTime = 0;
             VideoFElement.pause();
             ProgressBarF.style.zIndex = "-24";
+            ProgressBarF.style.display = "none";
 
-            btn_mute.style.display = "none";
-            btn_unmute.style.display = "block";
-            VideoAElement.muted = false;
+
+            if (VideoFElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoFElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
@@ -1355,6 +1555,18 @@ if (isVideoBoxF) {
             VideoFElement.currentTime = 0;
             VideoFElement.pause();
             ProgressBarF.style.zIndex = "-24";
+            ProgressBarF.style.display = "none";
+
+
+            if (VideoFElement.muted) {
+              VideoBElement.muted = true;
+              MuteBtnB.style.display = "block";
+              UnmuteBtnB.style.display = "none";
+            } else if (!VideoFElement.muted) {
+              VideoBElement.muted = false;
+              UnmuteBtnB.style.display = "block";
+              MuteBtnB.style.display = "none";
+            }
 
             VideoBElement.muted = false;
             VideoBElement.play();
@@ -1371,7 +1583,9 @@ if (isVideoBoxF) {
         back_F_B.style.display = 'none';
       }
       if (currentTimeF >= 355) {
-        VideoBElement.pause();
+        PauseBtnF.style.display = "none";
+        PlayBtnF.style.display = "block";
+        VideoFElement.pause();
       }
 
       console.log('TimeUpDateF');
@@ -1452,20 +1666,23 @@ if (isVideoBoxG) {
     }
 
     PauseBtnG.addEventListener('click', () => {
-      VideoGElement.pause();
-      stopTimerG();
-      PauseBtnG.style.display = 'none';
-      PlayBtnG.style.display = 'block';
-      console.log('G一時停止をクリックしました');
+      if (!VideoGElement.paused) {
+        VideoGElement.pause();
+        stopTimerG();
+        PauseBtnG.style.display = 'none';
+        PlayBtnG.style.display = 'block';
+        console.log('G一時停止をクリックしました');
+      }
     });
 
-
     PlayBtnG.addEventListener('click', () => {
-      startTimerG();
-      VideoGElement.play();
-      PlayBtnG.style.display = 'none';
-      PauseBtnG.style.display = 'block';
-      console.log('再生Gアイコンをクリックしました');
+      if (VideoGElement.paused) {
+        startTimerG();
+        VideoGElement.play();
+        PlayBtnG.style.display = 'none';
+        PauseBtnG.style.display = 'block';
+        console.log('再生Gアイコンをクリックしました');
+      }
     });
 
     MuteBtnG.addEventListener('click', () => {
@@ -1526,6 +1743,10 @@ if (isVideoBoxG) {
           if (isVideoVisibleG) {
 
             VideoGElement.pause();
+            if (VideoGElement.pause) {
+              PlayBtnG.style.display = "block";
+              PauseBtnG.style.display = "none";
+            }
 
             console.log('buttonG_Infoをクリックしました');
           }
@@ -1542,10 +1763,19 @@ if (isVideoBoxG) {
             VideoGElement.currentTime = 0;
             VideoGElement.pause();
             ProgressBarG.style.zIndex = "-23";
+            ProgressBarG.style.display = "none";
 
-            btn_mute.style.display = "none";
-            btn_unmute.style.display = "block";
-            VideoAElement.muted = false;
+
+            if (VideoGElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoGElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
@@ -1566,11 +1796,20 @@ if (isVideoBoxG) {
             VideoGElement.currentTime = 0;
             VideoGElement.pause();
             ProgressBarG.style.zIndex = "-23";
+            ProgressBarG.style.display = "none";
 
-            VideoBElement.muted = false;
+
+            if (VideoGElement.muted) {
+              VideoBElement.muted = true;
+              MuteBtnB.style.display = "block";
+              UnmuteBtnB.style.display = "none";
+            } else if (!VideoGElement.muted) {
+              VideoBElement.muted = false;
+              UnmuteBtnB.style.display = "block";
+              MuteBtnB.style.display = "none";
+            }
+
             VideoBElement.play();
-            UnmuteBtnB.style.display = "block";
-            MuteBtnB.style.display = "none";
             ClassB.style.zIndex = "290";
             ProgressBarB.style.zIndex = "1";
             ProgressBarB.style.display = "block";
@@ -1582,7 +1821,9 @@ if (isVideoBoxG) {
         back_G_B.style.display = 'none';
       }
       if (currentTimeG >= 200) {
-        VideoBElement.pause();
+        PauseBtnG.style.display = "none";
+        PlayBtnG.style.display = "block";
+        VideoGElement.pause();
       }
 
       console.log('TimeUpDateG');
@@ -1630,7 +1871,6 @@ let UnmuteBtnH = ContorolsSoundH.querySelector("#unmute");
 MuteBtnH.id = "mute_h";
 UnmuteBtnH.id = "unmute_h";
 
-
 let playtimerH = null;
 
 const startTimerH = () => {
@@ -1662,19 +1902,23 @@ if (isVideoBoxH) {
     }
 
     PauseBtnH.addEventListener('click', () => {
-      VideoHElement.pause();
-      stopTimerH();
-      PauseBtnH.style.display = 'none';
-      PlayBtnH.style.display = 'block';
-      console.log('H一時停止をクリックしました');
+      if (!VideoHElement.paused) {
+        VideoHElement.pause();
+        stopTimerH();
+        PauseBtnH.style.display = 'none';
+        PlayBtnH.style.display = 'block';
+        console.log('H一時停止をクリックしました');
+      }
     });
 
     PlayBtnH.addEventListener('click', () => {
-      startTimerH();
-      VideoHElement.play();
-      PlayBtnH.style.display = 'none';
-      PauseBtnH.style.display = 'block';
-      console.log('再生Hアイコンをクリックしました');
+      if (VideoHElement.paused) {
+        startTimerH();
+        VideoHElement.play();
+        PlayBtnH.style.display = 'none';
+        PauseBtnH.style.display = 'block';
+        console.log('再生Hアイコンをクリックしました');
+      }
     });
 
     MuteBtnH.addEventListener('click', () => {
@@ -1737,7 +1981,18 @@ if (isVideoBoxH) {
             VideoHElement.currentTime = 0;
             VideoHElement.pause();
             ProgressBarH.style.zIndex = "-22";
+            ProgressBarH.style.display = "none";
 
+
+            if (VideoHElement.muted) {
+              VideoMElement.muted = true;
+              MuteBtnM.style.display = "block";
+              UnmuteBtnM.style.display = "none";
+            } else if (!VideoHElement.muted) {
+              VideoMElement.muted = false;
+              UnmuteBtnM.style.display = "block";
+              MuteBtnM.style.display = "none";
+            }
 
             VideoMElement.play();
             ClassM.style.zIndex = "290";
@@ -1759,6 +2014,18 @@ if (isVideoBoxH) {
             VideoHElement.currentTime = 0;
             VideoHElement.pause();
             ProgressBarH.style.zIndex = "-22";
+            ProgressBarH.style.display = "none";
+
+
+            if (VideoHElement.muted) {
+              VideoNElement.muted = true;
+              MuteBtnN.style.display = "block";
+              UnmuteBtnN.style.display = "none";
+            } else if (!VideoHElement.muted) {
+              VideoNElement.muted = false;
+              UnmuteBtnN.style.display = "block";
+              MuteBtnN.style.display = "none";
+            }
 
             VideoNElement.play();
             ClassN.style.zIndex = "290";
@@ -1780,10 +2047,20 @@ if (isVideoBoxH) {
             VideoHElement.currentTime = 0;
             VideoHElement.pause();
             ProgressBarH.style.zIndex = "-22";
+            ProgressBarH.style.display = "none";
+
+
+            if (VideoHElement.muted) {
+              VideoCElement.muted = true;
+              MuteBtnC.style.display = "block";
+              UnmuteBtnC.style.display = "none";
+            } else if (!VideoHElement.muted) {
+              VideoCElement.muted = false;
+              UnmuteBtnC.style.display = "block";
+              MuteBtnC.style.display = "none";
+            }
 
             VideoCElement.play();
-            UnmuteBtnC.style.display = "block";
-            MuteBtnC.style.display = "none";
             ClassC.style.zIndex = "290";
             ProgressBarC.style.zIndex = "1";
             ProgressBarC.style.display = "block";
@@ -1795,6 +2072,8 @@ if (isVideoBoxH) {
         back_H_C.style.display = 'none';
       }
       if (currentTimeH >= 51) {
+        PauseBtnH.style.display = "none";
+        PlayBtnH.style.display = "block";
         VideoHElement.pause();
       }
 
@@ -1875,19 +2154,23 @@ if (isVideoBoxI) {
     }
 
     PauseBtnI.addEventListener('click', () => {
-      VideoIElement.pause();
-      stopTimerI();
-      PauseBtnI.style.display = 'none';
-      PlayBtnI.style.display = 'block';
-      console.log('I一時停止をクリックしました');
+      if (!VideoIElement.paused) {
+        VideoIElement.pause();
+        stopTimerI();
+        PauseBtnI.style.display = 'none';
+        PlayBtnI.style.display = 'block';
+        console.log('I一時停止をクリックしました');
+      }
     });
 
     PlayBtnI.addEventListener('click', () => {
-      startTimerI();
-      VideoIElement.play();
-      PlayBtnI.style.display = 'none';
-      PauseBtnI.style.display = 'block';
-      console.log('再生Iアイコンをクリックしました');
+      if (VideoIElement.paused) {
+        startTimerI();
+        VideoIElement.play();
+        PlayBtnI.style.display = 'none';
+        PauseBtnI.style.display = 'block';
+        console.log('再生Iアイコンをクリックしました');
+      }
     });
 
     MuteBtnI.addEventListener('click', () => {
@@ -1950,6 +2233,18 @@ if (isVideoBoxI) {
             VideoIElement.currentTime = 0;
             VideoIElement.pause();
             ProgressBarI.style.zIndex = "-21";
+            ProgressBarI.style.display = "none";
+
+
+            if (VideoIElement.muted) {
+              VideoOElement.muted = true;
+              MuteBtnO.style.display = "block";
+              UnmuteBtnO.style.display = "none";
+            } else if (!VideoIElement.muted) {
+              VideoOElement.muted = false;
+              UnmuteBtnO.style.display = "block";
+              MuteBtnO.style.display = "none";
+            }
 
             VideoOElement.play();
             ClassO.style.zIndex = "290";
@@ -1971,6 +2266,18 @@ if (isVideoBoxI) {
             VideoIElement.currentTime = 0;
             VideoIElement.pause();
             ProgressBarI.style.zIndex = "-21";
+            ProgressBarI.style.display = "none";
+
+
+            if (VideoIElement.muted) {
+              VideoPElement.muted = true;
+              MuteBtnP.style.display = "block";
+              UnmuteBtnP.style.display = "none";
+            } else if (!VideoIElement.muted) {
+              VideoPElement.muted = false;
+              UnmuteBtnP.style.display = "block";
+              MuteBtnP.style.display = "none";
+            }
 
             VideoPElement.play();
             ClassP.style.zIndex = "290";
@@ -1992,10 +2299,20 @@ if (isVideoBoxI) {
             VideoIElement.currentTime = 0;
             VideoIElement.pause();
             ProgressBarI.style.zIndex = "-21";
+            ProgressBarI.style.display = "none";
+
+
+            if (VideoIElement.muted) {
+              VideoCElement.muted = true;
+              MuteBtnC.style.display = "block";
+              UnmuteBtnC.style.display = "none";
+            } else if (!VideoIElement.muted) {
+              VideoCElement.muted = false;
+              UnmuteBtnC.style.display = "block";
+              MuteBtnC.style.display = "none";
+            }
 
             VideoCElement.play();
-            UnmuteBtnC.style.display = "block";
-            MuteBtnC.style.display = "none";
             ClassC.style.zIndex = "290";
             ProgressBarC.style.zIndex = "1";
             ProgressBarC.style.display = "block";
@@ -2007,6 +2324,8 @@ if (isVideoBoxI) {
         back_I_C.style.display = 'none';
       }
       if (currentTimeI >= 82) {
+        PauseBtnI.style.display = "none";
+        PlayBtnI.style.display = "block";
         VideoIElement.pause();
       }
 
@@ -2082,24 +2401,24 @@ if (isVideoBoxJ) {
     const formattedDurationJ = convertTime(maxDurationJ);
     EndTimeJ.textContent = `${formattedDurationJ}`;
 
-    if (ClassD.style.zIndex = "26") {
-      startTimerJ();
-    }
-
     PauseBtnJ.addEventListener('click', () => {
-      VideoJElement.pause();
-      stopTimerJ();
-      PauseBtnJ.style.display = 'none';
-      PlayBtnJ.style.display = 'block';
-      console.log('J一時停止をクリックしました');
+      if (!VideoJElement.paused) {
+        VideoJElement.pause();
+        stopTimerJ();
+        PauseBtnJ.style.display = 'none';
+        PlayBtnJ.style.display = 'block';
+        console.log('J一時停止をクリックしました');
+      }
     });
 
     PlayBtnJ.addEventListener('click', () => {
-      startTimerJ();
-      VideoJElement.play();
-      PlayBtnJ.style.display = 'none';
-      PauseBtnJ.style.display = 'block';
-      console.log('再生Jアイコンをクリックしました');
+      if (VideoJElement.paused) {
+        startTimerJ();
+        VideoJElement.play();
+        PlayBtnJ.style.display = 'none';
+        PauseBtnJ.style.display = 'block';
+        console.log('再生Jアイコンをクリックしました');
+      }
     });
 
 
@@ -2163,6 +2482,7 @@ if (isVideoBoxJ) {
             VideoJElement.pause();
             PauseBtnJ.style.display = "none";
             PlayBtnJ.style.display = "block";
+
             console.log('buttonJ_Info');
           }
         });
@@ -2178,11 +2498,20 @@ if (isVideoBoxJ) {
             VideoJElement.currentTime = 0;
             VideoJElement.pause();
             ProgressBarJ.style.zIndex = "-20";
+            ProgressBarJ.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoJElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoJElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -2202,6 +2531,18 @@ if (isVideoBoxJ) {
             VideoJElement.currentTime = 0;
             VideoJElement.pause();
             ProgressBarJ.style.zIndex = "-20";
+            ProgressBarJ.style.display = "none";
+
+
+            if (VideoJElement.muted) {
+              VideoDElement.muted = true;
+              MuteBtnD.style.display = "block";
+              UnmuteBtnD.style.display = "none";
+            } else if (!VideoJElement.muted) {
+              VideoDElement.muted = false;
+              UnmuteBtnD.style.display = "block";
+              MuteBtnD.style.display = "none";
+            }
 
             VideoDElement.play();
             ClassD.style.zIndex = "290";
@@ -2216,6 +2557,8 @@ if (isVideoBoxJ) {
       }
 
       if (currentTimeJ >= 202) {
+        PauseBtnJ.style.display = "none";
+        PauseBtnJ.style.display = "block";
         VideoJElement.pause();
       }
 
@@ -2296,19 +2639,23 @@ if (isVideoBoxK) {
     }
 
     PauseBtnK.addEventListener('click', () => {
-      VideoKElement.pause();
-      stopTimerK();
-      PauseBtnK.style.display = 'none';
-      PlayBtnK.style.display = 'block';
-      console.log('K一時停止をクリックしました');
+      if (!VideoKElement.paused) {
+        VideoKElement.pause();
+        stopTimerK();
+        PauseBtnK.style.display = 'none';
+        PlayBtnK.style.display = 'block';
+        console.log('K一時停止をクリックしました');
+      }
     });
 
     PlayBtnK.addEventListener('click', () => {
-      startTimerK();
-      VideoKElement.play();
-      PlayBtnK.style.display = 'none';
-      PauseBtnK.style.display = 'block';
-      console.log('再生Kアイコンをクリックしました');
+      if (VideoKElement.paused) {
+        startTimerK();
+        VideoKElement.play();
+        PlayBtnK.style.display = 'none';
+        PauseBtnK.style.display = 'block';
+        console.log('再生Kアイコンをクリックしました');
+      }
     });
 
 
@@ -2387,11 +2734,20 @@ if (isVideoBoxK) {
             VideoKElement.currentTime = 0;
             VideoKElement.pause();
             ProgressBarK.style.zIndex = "-19";
+            ProgressBarK.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoKElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoKElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -2411,6 +2767,18 @@ if (isVideoBoxK) {
             VideoKElement.currentTime = 0;
             VideoKElement.pause();
             ProgressBarK.style.zIndex = "-19";
+            ProgressBarK.style.display = "none";
+
+
+            if (VideoKElement.muted) {
+              VideoDElement.muted = true;
+              MuteBtnD.style.display = "block";
+              UnmuteBtnD.style.display = "none";
+            } else if (!VideoKElement.muted) {
+              VideoDElement.muted = false;
+              UnmuteBtnD.style.display = "block";
+              MuteBtnD.style.display = "none";
+            }
 
             VideoDElement.play();
             ClassD.style.zIndex = "290";
@@ -2425,6 +2793,8 @@ if (isVideoBoxK) {
       }
 
       if (currentTimeK >= 168) {
+        PauseBtnK.style.display = "none";
+        PlayBtnK.style.display = "block";
         VideoKElement.pause();
       }
 
@@ -2500,20 +2870,19 @@ if (isVideoBoxL) {
     const formattedDurationL = convertTime(maxDurationL);
     EndTimeL.textContent = `${formattedDurationL}`;
 
-    if (ClassD.style.zIndex = "26") {
-      startTimerL();
-    }
-
     PauseBtnL.addEventListener('click', () => {
-      VideoLElement.pause();
-      stopTimerL();
-      PauseBtnL.style.display = 'none';
-      PlayBtnL.style.display = 'block';
-      console.log('L一時停止をクリックしました');
+      if (!VideoLElement.paused) {
+        VideoLElement.pause();
+        stopTimerL();
+        PauseBtnL.style.display = 'none';
+        PlayBtnL.style.display = 'block';
+        console.log('L一時停止をクリックしました');
+      }
     });
 
     PlayBtnL.addEventListener('click', () => {
-      startTimerL();
+      if (VideoLElement.paused)
+        startTimerL();
       VideoLElement.play();
       PlayBtnL.style.display = 'none';
       PauseBtnL.style.display = 'block';
@@ -2596,11 +2965,20 @@ if (isVideoBoxL) {
             VideoLElement.currentTime = 0;
             VideoLElement.pause();
             ProgressBarL.style.zIndex = "-18";
+            ProgressBarL.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoLElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoLElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -2620,6 +2998,18 @@ if (isVideoBoxL) {
             VideoLElement.currentTime = 0;
             VideoLElement.pause();
             ProgressBarL.style.zIndex = "-18";
+            ProgressBarL.style.display = "none";
+
+
+            if (VideoLElement.muted) {
+              VideoDElement.muted = true;
+              MuteBtnD.style.display = "block";
+              UnmuteBtnD.style.display = "none";
+            } else if (!VideoLElement.muted) {
+              VideoDElement.muted = false;
+              UnmuteBtnD.style.display = "block";
+              MuteBtnD.style.display = "none";
+            }
 
             VideoDElement.play();
             ClassD.style.zIndex = "290";
@@ -2634,6 +3024,8 @@ if (isVideoBoxL) {
       }
 
       if (currentTimeL >= 188) {
+        PauseBtnL.style.display = "none";
+        PlayBtnL.style.display = "block";
         VideoLElement.pause();
       }
 
@@ -2714,19 +3106,23 @@ if (isVideoBoxM) {
     }
 
     PauseBtnM.addEventListener('click', () => {
-      VideoMElement.pause();
-      stopTimerM();
-      PauseBtnM.style.display = 'none';
-      PlayBtnM.style.display = 'block';
-      console.log('M一時停止をクリックしました');
+      if (!VideoMElement.paused) {
+        VideoMElement.pause();
+        stopTimerM();
+        PauseBtnM.style.display = 'none';
+        PlayBtnM.style.display = 'block';
+        console.log('M一時停止をクリックしました');
+      }
     });
 
     PlayBtnM.addEventListener('click', () => {
-      startTimerM();
-      VideoMElement.play();
-      PlayBtnM.style.display = 'none';
-      PauseBtnM.style.display = 'block';
-      console.log('再生Mアイコンをクリックしました');
+      if (VideoMElement.paused) {
+        startTimerM();
+        VideoMElement.play();
+        PlayBtnM.style.display = 'none';
+        PauseBtnM.style.display = 'block';
+        console.log('再生Mアイコンをクリックしました');
+      }
     });
 
 
@@ -2805,11 +3201,20 @@ if (isVideoBoxM) {
             VideoMElement.currentTime = 0;
             VideoMElement.pause();
             ProgressBarM.style.zIndex = "-17";
+            ProgressBarM.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoMElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoMElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -2829,6 +3234,18 @@ if (isVideoBoxM) {
             VideoMElement.currentTime = 0;
             VideoMElement.pause();
             ProgressBarM.style.zIndex = "-17";
+            ProgressBarM.style.display = "none";
+
+
+            if (VideoMElement.muted) {
+              VideoHElement.muted = true;
+              MuteBtnH.style.display = "block";
+              UnmuteBtnH.style.display = "none";
+            } else if (!VideoMElement.muted) {
+              VideoHElement.muted = false;
+              UnmuteBtnH.style.display = "block";
+              MuteBtnH.style.display = "none";
+            }
 
             VideoHElement.play();
             ClassH.style.zIndex = "290";
@@ -2843,6 +3260,8 @@ if (isVideoBoxM) {
       }
 
       if (currentTimeM >= 283) {
+        PauseBtnM.style.display = "none";
+        PlayBtnM.style.display = "block";
         VideoMElement.pause();
       }
 
@@ -2923,19 +3342,23 @@ if (isVideoBoxN) {
     }
 
     PauseBtnN.addEventListener('click', () => {
-      VideoNElement.pause();
-      stopTimerN();
-      PauseBtnN.style.display = 'none';
-      PlayBtnN.style.display = 'block';
-      console.log('N一時停止をクリックしました');
+      if (!VideoNElement.paused) {
+        VideoNElement.pause();
+        stopTimerN();
+        PauseBtnN.style.display = 'none';
+        PlayBtnN.style.display = 'block';
+        console.log('N一時停止をクリックしました');
+      }
     });
 
     PlayBtnN.addEventListener('click', () => {
-      startTimerN();
-      VideoNElement.play();
-      PlayBtnN.style.display = 'none';
-      PauseBtnN.style.display = 'block';
-      console.log('再生Nアイコンをクリックしました');
+      if (VideoNElement.paused) {
+        startTimerN();
+        VideoNElement.play();
+        PlayBtnN.style.display = 'none';
+        PauseBtnN.style.display = 'block';
+        console.log('再生Nアイコンをクリックしました');
+      }
     });
 
 
@@ -3014,11 +3437,20 @@ if (isVideoBoxN) {
             VideoNElement.currentTime = 0;
             VideoNElement.pause();
             ProgressBarN.style.zIndex = "-16";
+            ProgressBarN.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoNElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoNElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -3038,6 +3470,18 @@ if (isVideoBoxN) {
             VideoNElement.currentTime = 0;
             VideoNElement.pause();
             ProgressBarN.style.zIndex = "-16";
+            ProgressBarN.style.display = "none";
+
+
+            if (VideoNElement.muted) {
+              VideoHElement.muted = true;
+              MuteBtnH.style.display = "block";
+              UnmuteBtnH.style.display = "none";
+            } else if (!VideoNElement.muted) {
+              VideoHElement.muted = false;
+              UnmuteBtnH.style.display = "block";
+              MuteBtnH.style.display = "none";
+            }
 
             VideoHElement.play();
             ClassH.style.zIndex = "290";
@@ -3052,6 +3496,8 @@ if (isVideoBoxN) {
       }
 
       if (currentTimeN >= 294) {
+        PauseBtnN.style.display = "none";
+        PlayBtnN.style.display = "block";
         VideoNElement.pause();
       }
 
@@ -3132,19 +3578,23 @@ if (isVideoBoxO) {
     }
 
     PauseBtnO.addEventListener('click', () => {
-      VideoOElement.pause();
-      stopTimerO();
-      PauseBtnO.style.display = 'none';
-      PlayBtnO.style.display = 'block';
-      console.log('O一時停止をクリックしました');
+      if (!VideoOElement.paused) {
+        VideoOElement.pause();
+        stopTimerO();
+        PauseBtnO.style.display = 'none';
+        PlayBtnO.style.display = 'block';
+        console.log('O一時停止をクリックしました');
+      }
     });
 
     PlayBtnO.addEventListener('click', () => {
-      startTimerO();
-      VideoOElement.play();
-      PlayBtnO.style.display = 'none';
-      PauseBtnO.style.display = 'block';
-      console.log('再生Oアイコンをクリックしました');
+      if (VideoOElement.paused) {
+        startTimerO();
+        VideoOElement.play();
+        PlayBtnO.style.display = 'none';
+        PauseBtnO.style.display = 'block';
+        console.log('再生Oアイコンをクリックしました');
+      }
     });
 
 
@@ -3223,11 +3673,20 @@ if (isVideoBoxO) {
             VideoOElement.currentTime = 0;
             VideoOElement.pause();
             ProgressBarO.style.zIndex = "-15";
+            ProgressBarO.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoOElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoOElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -3247,6 +3706,18 @@ if (isVideoBoxO) {
             VideoOElement.currentTime = 0;
             VideoOElement.pause();
             ProgressBarO.style.zIndex = "-15";
+            ProgressBarO.style.display = "none";
+
+
+            if (VideoOElement.muted) {
+              VideoIElement.muted = true;
+              MuteBtnI.style.display = "block";
+              UnmuteBtnI.style.display = "none";
+            } else if (!VideoOElement.muted) {
+              VideoIElement.muted = false;
+              UnmuteBtnI.style.display = "block";
+              MuteBtnI.style.display = "none";
+            }
 
             VideoIElement.play();
             ClassI.style.zIndex = "290";
@@ -3261,6 +3732,8 @@ if (isVideoBoxO) {
       }
 
       if (currentTimeO >= 162) {
+        PauseBtnO.style.display = "none";
+        PlayBtnO.style.display = "block";
         VideoOElement.pause();
       }
 
@@ -3341,19 +3814,23 @@ if (isVideoBoxP) {
     }
 
     PauseBtnP.addEventListener('click', () => {
-      VideoPElement.pause();
-      stopTimerP();
-      PauseBtnP.style.display = 'none';
-      PlayBtnP.style.display = 'block';
-      console.log('P一時停止をクリックしました');
+      if (!VideoPElement.paused) {
+        VideoPElement.pause();
+        stopTimerP();
+        PauseBtnP.style.display = 'none';
+        PlayBtnP.style.display = 'block';
+        console.log('P一時停止をクリックしました');
+      }
     });
 
     PlayBtnP.addEventListener('click', () => {
-      startTimerP();
-      VideoPElement.play();
-      PlayBtnP.style.display = 'none';
-      PauseBtnP.style.display = 'block';
-      console.log('再生Pアイコンをクリックしました');
+      if (VideoPElement.paused) {
+        startTimerP();
+        VideoPElement.play();
+        PlayBtnP.style.display = 'none';
+        PauseBtnP.style.display = 'block';
+        console.log('再生Pアイコンをクリックしました');
+      }
     });
 
 
@@ -3432,11 +3909,20 @@ if (isVideoBoxP) {
             VideoPElement.currentTime = 0;
             VideoPElement.pause();
             ProgressBarP.style.zIndex = "-14";
+            ProgressBarP.style.display = "none";
 
-            VideoAElement.muted = false;
+
+            if (VideoPElement.muted) {
+              VideoAElement.muted = true;
+              btn_mute.style.display = "block";
+              btn_unmute.style.display = "none";
+            } else if (!VideoPElement.muted) {
+              VideoAElement.muted = false;
+              btn_unmute.style.display = "block";
+              btn_mute.style.display = "none";
+            }
+
             VideoAElement.play();
-            btn_unmute.style.display = "block";
-            btn_mute.style.display = "none";
             ClassA.style.zIndex = "290";
             ProgressBar.style.zIndex = "1";
             ProgressBar.style.display = "block";
@@ -3456,6 +3942,18 @@ if (isVideoBoxP) {
             VideoPElement.currentTime = 0;
             VideoPElement.pause();
             ProgressBarP.style.zIndex = "-14";
+            ProgressBarP.style.display = "none";
+
+
+            if (VideoPElement.muted) {
+              VideoIElement.muted = true;
+              MuteBtnI.style.display = "block";
+              UnmuteBtnI.style.display = "none";
+            } else if (!VideoPElement.muted) {
+              VideoIElement.muted = false;
+              UnmuteBtnI.style.display = "block";
+              MuteBtnI.style.display = "none";
+            }
 
             VideoIElement.play();
             ClassI.style.zIndex = "290";
@@ -3470,6 +3968,8 @@ if (isVideoBoxP) {
       }
 
       if (currentTimeP >= 255) {
+        PauseBtnP.style.display = "none";
+        PlayBtnP.style.display = "block";
         VideoPElement.pause();
       }
 
