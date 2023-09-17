@@ -477,12 +477,20 @@ img {
   }
 }
 
-@media (orientation: landscape) {
+@media (min-width: 667px) {
   .container {
-    width: 78%;
+    top: 20%;
+    bottom: 20%;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 928px) {
+  .container {
+    width: 76%;
     top: 0;
     bottom: 0;
     left: 6%;
+    right: 6%;
   }
 }
 
