@@ -310,9 +310,9 @@ img {
   display: flex;
   align-items: center;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
-  width: 90%;
+  width: 100%;
 }
 
 #play_position,
@@ -500,15 +500,19 @@ img {
   }
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-width: 767px) {
   .container {
-    width: 70%;
+    width: 65%;
     margin-top: 0;
   }
 }
 
 @media (orientation: portrait) {
   .container {
-    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 100%;
+    margin-top: 0;
+    top: 25%;
+    bottom: 25%;
   }
 }
