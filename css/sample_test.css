@@ -319,14 +319,10 @@ img {
   width: 100%;
 }
 
-#play_position {
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
+#play_position,
 #end_position {
-  margin-left: 4px;
-  margin-right: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 #play,
@@ -361,7 +357,7 @@ img {
 #pause_n,
 #pause_o,
 #pause_p {
-  padding-left: 8px;
+  padding-left: 6px;
 }
 
 #unmute,
@@ -396,7 +392,7 @@ img {
 #mute_n,
 #mute_o,
 #mute_p {
-  padding-right: 8px;
+  padding-right: 6px;
 }
 
 #play,
@@ -476,11 +472,17 @@ img {
 
 @media (orientation: landscape) {
   .container {
-    width: 88%;
-    margin-top: 1px;
+    width: 78%;
     top: 0;
     bottom: 0;
     left: 6%;
+  }
+}
+
+@media (min-width: 413px) {
+  .container {
+    top: 35%;
+    bottom: 35%;
   }
 }
 
