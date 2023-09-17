@@ -319,6 +319,16 @@ img {
   width: 100%;
 }
 
+#play_position {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+#end_position {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 #play,
 #play_b,
 #play_c,
