@@ -512,7 +512,7 @@ img {
 
 @media (orientation: landscape) and (max-width: 928px) {
   .container {
-    width: 65%;
+    width: 50%;
     top: 0;
     bottom: 0;
     left: 6%;
