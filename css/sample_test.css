@@ -2,32 +2,37 @@
 
 body {
   margin: 0 auto;
-  /* background: black; */
+  background: black;
+}
+
+.main_container {
+  display: flex;
 }
 
 .container {
-  width: 65%;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
   position: fixed;
-  left: 15%;
-  right: 15%;
-  top: 30%;
-  bottom: 30%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 .interactive_videos {
   position: relative;
   width: 100%;
-  height: 0%;
-  padding-top: 56.25%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 video {
   position: absolute;
   top: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
 }
@@ -242,7 +247,7 @@ video {
   padding: 0;
 }
 
-#progress_bar,
+/* #progress_bar,
 #progress_bar_b,
 #progress_bar_c,
 #progress_bar_d,
@@ -259,7 +264,7 @@ video {
 #progress_bar_o,
 #progress_bar_p {
   position: relative;
-}
+} */
 
 #background_bar,
 #background_bar_b,
@@ -498,39 +503,75 @@ img {
   cursor: pointer;
 }
 
-@media (min-width: 480px) {
-  .container {
-    top: 25%;
-    bottom: 25%;
-  }
-}
 
-@media (min-width: 667px) {
+@media (orientation: landscape) and (min-width: 667px) {
   .container {
-    top: 20%;
-    bottom: 20%;
-  }
-}
-
-
-@media (orientation: landscape) and (max-width: 928px) {
-  .container {
-    width: 70%;
+    width: 65%;
+    left: 17%;
+    right: 17%;
     top: 0;
     bottom: 0;
-    left: 6%;
-    right: 6%;
   }
 }
 
-@media (min-width:928px) {
+@media (min-width: 720px) {
   .container {
     width: 70%;
-    top: 0;
-    bottom: 0;
     left: 15%;
     right: 15%;
-    margin-right: 0;
-    margin-left: 0;
+    top: 5%;
+    bottom: 5%;
+  }
+}
+
+@media (min-width: 800px) {
+  .container {
+    width: 75%;
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media (min-width: 880px) {
+  .container {
+    width: 80%;
+  }
+}
+
+@media(min-width: 960px) {
+  .container {
+    width: 85%;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+@media(min-width: 1020px) {
+  .container {
+    width: 85%;
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media(min-width: 1080px) {
+  .container {
+    width: 80%;
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media (min-width: 1160px) {
+  .container {
+    width: 75%;
+    left: 15%;
+    right: 15%;
+  }
+}
+
+@media (min-width: 1240px) {
+  .container {
+    width: 70%;
   }
 }
