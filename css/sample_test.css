@@ -506,9 +506,9 @@ img {
 
 @media (orientation: landscape) and (min-width: 667px) {
   .container {
-    width: 50%;
-    left: 25%;
-    right: 25%;
+    width: 40%;
+    left: 30%;
+    right: 30%;
     top: 0;
     bottom: 0;
   }
