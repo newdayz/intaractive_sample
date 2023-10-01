@@ -139,7 +139,7 @@ const back_P_I = document.getElementById('button_p_i');
 
 // window.addEventListener("resize", updateContainerSize);
 
-Container.style.transform = "scale(0.8)";
+Container.style.transform = "scale(0.7)";
 
 const resizeFix = () => {
   const checkHeight = document.documentElement.clientWidth / 1280 * 720;
