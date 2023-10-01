@@ -7,14 +7,13 @@ body {
 
 .main_container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
@@ -246,25 +245,6 @@ video {
   border: 0;
   padding: 0;
 }
-
-/* #progress_bar,
-#progress_bar_b,
-#progress_bar_c,
-#progress_bar_d,
-#progress_bar_e,
-#progress_bar_f,
-#progress_bar_g,
-#progress_bar_h,
-#progress_bar_i,
-#progress_bar_j,
-#progress_bar_k,
-#progress_bar_l,
-#progress_bar_m,
-#progress_bar_n,
-#progress_bar_o,
-#progress_bar_p {
-  position: relative;
-} */
 
 #background_bar,
 #background_bar_b,
@@ -504,7 +484,7 @@ img {
 }
 
 
-@media (orientation: landscape) and (min-width: 667px) {
+ /* @media (orientation: landscape) and (min-width: 667px) {
   .container {
     width: 40%;
     left: 30%;
@@ -512,7 +492,7 @@ img {
     top: 0;
     bottom: 0;
   }
-}
+}  */
 
 /* @media (min-width: 720px) {
   .container {

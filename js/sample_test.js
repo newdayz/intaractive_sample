@@ -124,6 +124,59 @@ const opening_P_A = document.getElementById('button_p_a');
 const back_P_I = document.getElementById('button_p_i');
 
 
+// function updateContainerSize() {
+//   let w_i_width = document.documentElement.clientWidth;
+//   let w_i_height = document.documentElement.clientHeight;
+
+//    Container.style.width = w_i_width * 1.0 + "px";
+//    Container.style.height = w_i_height * 0.56 + "px";
+
+//   console.log(document.documentElement.clientWidth);
+//   console.log(document.documentElement.clientHeight);
+// }
+
+// updateContainerSize();
+
+// window.addEventListener("resize", updateContainerSize);
+
+Container.style.transform = "scale(0.8)";
+
+const resizeFix = () => {
+  const checkHeight = document.documentElement.clientWidth / 1280 * 720;
+  const marginTop = document.documentElement.clientHeight - checkHeight;
+  const marginBottom = document.documentElement.clientHeight - checkHeight;
+  const checkWidth = document.documentElement.clientHeight / 720 * 1280;
+  const marginLeft = document.documentElement.clientWidth - checkWidth;
+  const marginRight = document.documentElement.clientWidth - checkWidth;
+
+  if (document.documentElement.clientWidth >= 1280 && document.documentElement.clientHeight >= 720) {
+    Container.style.transform = "scale(1.0)";
+    // Container.style.marginLeft = (document.documentElement.clientWidth - 1280) / 2 + "px";
+    // Container.style.marginRight = (document.documentElement.clientWidth - 1280) / 2 + "px";
+    Container.style.marginTop = (document.documentElement.clientHeight - 720) / 2 + "px";
+    Container.style.marginBottom = (document.documentElement.clientHeight - 720) / 2 + "px";
+  } else {
+    if (checkHeight > document.documentElement.clientHeight) {
+      Container.style.transform = "scale(' + document.documentElement.clientHeight / 720 + ')";
+      Container.style.marginLeft = marginLeft / 2 + "px";
+      Container.style.marginRight = marginRight / 2 + "px";
+      Container.style.marginTop = marginTop / 0 + "px";
+      Container.style.marginBottom = marginBottom / 0 + "px";
+    } else {
+      Container.style.transform = "scale(' + document.documentElement.clientWidth / 1280 + ')";
+      Container.style.marginLeft = 0 + "px";
+      Container.style.marginRight = 0 + "px";
+      Container.style.marginTop = 0 + "px";
+      Container.style.marginBottom = 0 + "px";
+    }
+  }
+}
+
+window.addEventListener("resize", () => {
+  resizeFix();
+});
+
+
 const convertTime = (time_position) => {
   time_position = Math.floor(time_position);
   let res = null;
